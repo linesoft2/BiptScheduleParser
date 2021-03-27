@@ -112,14 +112,20 @@ function getMidValue(str, firstStr, secondStr) {
     return subSecondStr;
 }
 
-function createSections(str) {
-    //第1,2节
-    let strArr = str.replace("第", "").replace("节", "").split(",")
-    let arr = []
-    for (let i = 0; i < strArr.length; i++) {
+function createSections(str){
+     //第1,2节
+     let arr = []
+     if(str.indexOf(",")==-1){
+         arr.push({
+            section: parseInt(str.replace("第","").replace("节",""))
+        })
+        return arr
+    }
+     let strArr = str.replace("第","").replace("节","").split(",")
+     for (let i =0; i< strArr.length;i++){
         arr.push({
             section: parseInt(strArr[i])
         })
-    }
-    return arr
+     }
+     return arr
 }
